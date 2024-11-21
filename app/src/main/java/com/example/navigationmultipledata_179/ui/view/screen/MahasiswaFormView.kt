@@ -36,11 +36,12 @@ import androidx.compose.ui.unit.sp
 import com.example.navigationmultipledata_179.R
 import com.example.navigationmultipledata_179.model.Mahasiswa
 
-@Preview(showBackground = true)
+
 @Composable
 fun MahasiswaFormView(
-    onSubmitButton: (MutableList<String> ->)
-) {
+    onSubmitButton: (MutableList<String>) -> Unit,
+            onBackButtonClicked: () -> Unit)
+{
 
     var nim by remember { mutableStateOf("") }
     var nama by remember { mutableStateOf("") }
