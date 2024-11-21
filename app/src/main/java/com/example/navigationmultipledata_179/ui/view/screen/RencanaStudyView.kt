@@ -129,24 +129,54 @@ fun RencanaStudyView (
                 HorizontalDivider() //untuk memisahkan bagian atas dan bawah dari layout
                 Spacer(modifier = Modifier.padding(8.dp))
                 Text(text = "Pilih Kelas Belajar", fontWeight = FontWeight.Bold)
-                Text(text = "Silahkan pilih kelas dari mata kuliah yang anda inginkan",
+                Text(
+                    text = "Silahkan pilih kelas dari mata kuliah yang anda inginkan",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Light
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
-                Row (
+                Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly){
-                    RuangKelas.kelas.forEach{ data ->
-                        Row(verticalAlignment = Alignment.CenterVertically){
-                            RadioButton(selected = pilihanKelas == data, onClick = { pilihanKelas = data}
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    RuangKelas.kelas.forEach { data ->
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            RadioButton(
+                                selected = pilihanKelas == data,
+                                onClick = { pilihanKelas = data }
                             )
                             Text(data)
                         }
                     }
                 }
                 Spacer(modifier = Modifier.padding(8.dp))
+                HorizontalDivider()
+                Spacer(modifier = Modifier.padding(8.dp))
+                Text(text = "Klausul Persetujuan Mahasisea", fontWeight = FontWeight.Bold)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(
+                        checked = checked,
+                        onCheckedChange = { checked = it },
+                        enabled = chosenDropdown.isNotBlank() && pilihanKelas.isNotBlank()
+                    )
+                    Text(
+                        text = "Saya menyetujuui setiap pernyataan yang ada tanpa ada paksaan dari pihak manapun.",
+                        fontWeight = FontWeight.Light, fontSize = 10.sp
+                    )
+                }
+                Spacer(modifier = Modifier.padding(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(onClick = { onBackButtonClicked() }) {
+                        Text(text = "Kembali")
+                    }
+                    Button(onClick = { onSubmitButtonClicked(listData) }, enabled = checked) {
+                        Text(text = "Lanjut")
 
+                    }
+                }
             }
         }
     }
