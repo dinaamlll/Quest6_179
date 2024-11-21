@@ -49,5 +49,19 @@ fun RencanaStudyView (
             .fillMaxSize()
             .background(color = colorResource(id = R.color.primary))
     ) {
-    }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp), verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.logoumy),
+                contentDescription = "",
+                modifier = Modifier
+                    .clip(shape = CircleShape)
+                    .size(50.dp)
+            )
+            Spacer(modifier = Modifier.padding(start = 16.dp))
+        }
+        }
 }
