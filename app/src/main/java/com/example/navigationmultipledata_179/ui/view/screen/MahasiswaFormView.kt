@@ -62,7 +62,7 @@ fun MahasiswaFormView(
                 painter = painterResource(id = R.drawable.logoumy),
                 contentDescription = ""
             )
-            Spacer(modifier = Modifier.padding(8.dp))
+            Spacer(modifier = Modifier.padding(start = 16.dp))
 
             Column {
                 Text(
@@ -74,10 +74,11 @@ fun MahasiswaFormView(
                 Text(
                     text = "Unggul dan Islami",
                     color = Color.Red,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Light
                 )
             }
         }
+
         Box(
             modifier = Modifier
                 .background(
