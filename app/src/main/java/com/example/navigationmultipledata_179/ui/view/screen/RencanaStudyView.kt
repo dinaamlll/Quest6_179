@@ -2,6 +2,7 @@ package com.example.navigationmultipledata_179.ui.view.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,7 +15,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,6 +35,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigationmultipledata_179.R
+import com.example.navigationmultipledata_179.data.MataKuliah
+import com.example.navigationmultipledata_179.data.RuangKelas
 import com.example.navigationmultipledata_179.model.Mahasiswa
 
 @Composable
@@ -99,6 +105,19 @@ fun RencanaStudyView (
                 )
                 .fillMaxSize(),
         ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                Text(text = "Pilih Mata Kuliah Peminatan", fontWeight = FontWeight.Bold)
+                Text(
+                    text = "Silahkan pilih mata kuliah yang anda inginkan",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+            }
         }
     }
 }
