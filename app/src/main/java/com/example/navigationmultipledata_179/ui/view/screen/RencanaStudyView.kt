@@ -1,4 +1,6 @@
 package com.example.navigationmultipledata_179.ui.view.screen
+import com.example.navigationmultipledata_179.ui.widget.DynamicSelectTextField
+import androidx.compose.material3.Divider
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,6 +17,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
@@ -126,7 +129,7 @@ fun RencanaStudyView (
                     }
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
-                HorizontalDivider() //untuk memisahkan bagian atas dan bawah dari layout
+                Divider() //untuk memisahkan bagian atas dan bawah dari layout
                 Spacer(modifier = Modifier.padding(8.dp))
                 Text(text = "Pilih Kelas Belajar", fontWeight = FontWeight.Bold)
                 Text(
@@ -150,7 +153,7 @@ fun RencanaStudyView (
                     }
                 }
                 Spacer(modifier = Modifier.padding(8.dp))
-                HorizontalDivider()
+                Divider()
                 Spacer(modifier = Modifier.padding(8.dp))
                 Text(text = "Klausul Persetujuan Mahasisea", fontWeight = FontWeight.Bold)
                 Row(verticalAlignment = Alignment.CenterVertically) {
