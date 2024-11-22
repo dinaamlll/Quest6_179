@@ -1,4 +1,4 @@
-package com.example.multipledata.ui.view.screen
+package com.example.navigationmultipledata_179.ui.view.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
