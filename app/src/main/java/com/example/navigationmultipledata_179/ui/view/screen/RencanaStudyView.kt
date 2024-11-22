@@ -1,6 +1,10 @@
 package com.example.navigationmultipledata_179.ui.view.screen
-import com.example.navigationmultipledata_179.ui.widget.DynamicSelectTextField
+
 import androidx.compose.material3.Divider
+import com.example.navigationmultipledata_179.R
+import com.example.navigationmultipledata_179.data.MataKuliah
+import com.example.navigationmultipledata_179.data.RuangKelas
+import com.example.navigationmultipledata_179.ui.widget.DynamicSelectTextField
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,12 +16,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material3.Divider
+import androidx.compose.material.icons.materialIcon
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
@@ -30,23 +32,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigationmultipledata_179.R
-import com.example.navigationmultipledata_179.data.MataKuliah
-import com.example.navigationmultipledata_179.data.RuangKelas
+import androidx.core.provider.FontsContractCompat.Columns
 import com.example.navigationmultipledata_179.model.Mahasiswa
 
 @Composable
-fun RencanaStudyView (
+fun RencanaStudyView(
     mahasiswa: Mahasiswa,
-    onSubmitButtonClicked: (MutableList<String>) ->Unit,
-    onBackButtonClicked: () -> Unit
+    onSubmitButton: (MutableList<String>) -> Unit,
+    onbackbuttonClicked: () -> Unit,
 ) {
     var chosenDropdown by remember {
         mutableStateOf("")
@@ -66,30 +67,34 @@ fun RencanaStudyView (
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp), verticalAlignment = Alignment.CenterVertically
+                .padding(40.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
-                painter = painterResource(id = R.drawable.logoumy),
-                contentDescription = "",
-                modifier = Modifier
-                    .clip(shape = CircleShape)
-                    .size(50.dp)
+                painter = painterResource(
+                    id = R.drawable.logoumy
+                ),
+                contentDescription = ""
             )
-            Spacer(modifier = Modifier.padding(start = 16.dp))
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
+
+
+            Spacer(modifier = Modifier.padding(start = 30.dp))
+
+
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = mahasiswa.nama,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 15.sp,
-                    color = Color.White
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
                 )
+
+
                 Text(
                     text = mahasiswa.nim,
-                    fontWeight = FontWeight.Light,
-                    fontSize = 12.sp,
-                    color = Color.White
+                    color = Color.White,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
                 )
             }
             Box {
@@ -100,26 +105,40 @@ fun RencanaStudyView (
                 )
             }
         }
+
+
         Box(
             modifier = Modifier
                 .background(
                     color = Color.White,
-                    shape = RoundedCornerShape(topEnd = 15.dp, topStart = 15.dp)
+                    shape = RoundedCornerShape(
+                        topEnd = 15.dp,
+                        topStart = 15.dp
+                    )
                 )
-                .fillMaxSize(),
+                .fillMaxWidth()
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
-                Text(text = "Pilih Mata Kuliah Peminatan", fontWeight = FontWeight.Bold)
+                Text(
+                    text = "Pilih Mata Kuliah Peminatan",
+                    fontWeight = FontWeight.Bold
+                )
+
+
                 Text(
                     text = "Silahkan pilih mata kuliah yang anda inginkan",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Light
                 )
+
+
                 Spacer(modifier = Modifier.padding(8.dp))
+
+
                 DynamicSelectTextField(
                     selectedValue = chosenDropdown,
                     options = MataKuliah.options,
@@ -128,16 +147,23 @@ fun RencanaStudyView (
                         chosenDropdown = it
                     }
                 )
+
+
                 Spacer(modifier = Modifier.padding(8.dp))
-                Divider() //untuk memisahkan bagian atas dan bawah dari layout
+                Divider()
                 Spacer(modifier = Modifier.padding(8.dp))
-                Text(text = "Pilih Kelas Belajar", fontWeight = FontWeight.Bold)
+
+
                 Text(
-                    text = "Silahkan pilih kelas dari mata kuliah yang anda inginkan",
+                    text = "Silahkan pilih Kelas dari mata kuliah yang anda inginkan",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Light
                 )
+
+
                 Spacer(modifier = Modifier.padding(8.dp))
+
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
@@ -152,10 +178,18 @@ fun RencanaStudyView (
                         }
                     }
                 }
+
+
+
+
                 Spacer(modifier = Modifier.padding(8.dp))
                 Divider()
                 Spacer(modifier = Modifier.padding(8.dp))
-                Text(text = "Klausul Persetujuan Mahasisea", fontWeight = FontWeight.Bold)
+
+
+                Text(text = "Klausul Persetujuan Mahasiswa", fontWeight = FontWeight.Bold)
+
+
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Checkbox(
                         checked = checked,
@@ -163,21 +197,29 @@ fun RencanaStudyView (
                         enabled = chosenDropdown.isNotBlank() && pilihanKelas.isNotBlank()
                     )
                     Text(
-                        text = "Saya menyetujuui setiap pernyataan yang ada tanpa ada paksaan dari pihak manapun.",
-                        fontWeight = FontWeight.Light, fontSize = 10.sp
+                        text = "Saya Menyetujui setiap pernyataan yang ada tanpa ada paksaan dari pihak manapun.",
+                        fontWeight = FontWeight.Light,
+                        fontSize = 10.sp
                     )
                 }
+
+
                 Spacer(modifier = Modifier.padding(8.dp))
+
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    Button(onClick = { onBackButtonClicked() }) {
+                    Button(onClick = { onbackbuttonClicked() }) {
                         Text(text = "Kembali")
                     }
-                    Button(onClick = { onSubmitButtonClicked(listData) }, enabled = checked) {
-                        Text(text = "Lanjut")
 
+
+                    Button(onClick = {
+                        onSubmitButton(listData)
+                    }, enabled = checked) {
+                        Text(text = "Lanjut")
                     }
                 }
             }
