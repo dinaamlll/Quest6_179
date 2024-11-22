@@ -27,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -34,19 +35,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigationmultipledata_179.R
-import com.example.navigationmultipledata_179.model.Mahasiswa
 
 
 @Composable
 fun MahasiswaFormView(
-    onSubmitButton: (MutableList<String>) -> Unit,
-            onBackButtonClicked: () -> Unit)
-{
+    onSubmitButtonClicked: (MutableList<String>) -> Unit,
+    onBackButtonClicked: () -> Unit
+) {
 
     var nim by remember { mutableStateOf("") }
     var nama by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
-    var listData : MutableList<String> = mutableListOf(nim,nama,email)
+    var listData: MutableList<String> = mutableListOf(nim, nama, email)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -62,7 +62,7 @@ fun MahasiswaFormView(
                 painter = painterResource(id = R.drawable.logoumy),
                 contentDescription = ""
             )
-            Spacer(modifier = Modifier.padding(start = 16.dp))
+            Spacer(modifier = Modifier.padding(8.dp))
 
             Column {
                 Text(
@@ -74,11 +74,10 @@ fun MahasiswaFormView(
                 Text(
                     text = "Unggul dan Islami",
                     color = Color.Red,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Bold
                 )
             }
         }
-
         Box(
             modifier = Modifier
                 .background(
@@ -124,7 +123,7 @@ fun MahasiswaFormView(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(50.dp),
                     value = nama,
-                    onValueChange = { nim = it },
+                    onValueChange = { nama = it },
                     label = { Text(text = "Masukkan Nama Anda") },
                     leadingIcon = {
                         Icon(
@@ -139,7 +138,7 @@ fun MahasiswaFormView(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(50.dp),
                     value = email,
-                    onValueChange = { nim = it },
+                    onValueChange = { email = it },
                     label = { Text(text = "Masukkan Email Anda") },
                     leadingIcon = {
                         Icon(
@@ -154,12 +153,13 @@ fun MahasiswaFormView(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    Button(onClick = {}) {
+                    Button(onClick = { onBackButtonClicked() }) {
                         Text(text = "Kembali")
                     }
-                    Button(onClick = {}) {
+                    Button(onClick = { onSubmitButtonClicked(listData) }) {
                         Text(text = "Simpan")
                     }
+
                 }
             }
         }
