@@ -44,8 +44,8 @@ fun MahasiswaApp(
     ) {
         composable(
             route = Halaman.Splash.name
-        ){
-            SplashView  (
+        ) {
+            SplashView(
                 onMulaiButton = {
                     navController.navigate(Halaman.Mahasiswa.name)
                 })
@@ -53,17 +53,18 @@ fun MahasiswaApp(
 
 
         composable(route = Halaman.Mahasiswa.name) {
-            MahasiswaFormView (
+            MahasiswaFormView(
                 onSubmitButtonClicked = {
                     mahasiswaViewModel.saveDataMahasiswa(it)
-                    navController.navigate(Halaman.Peminatan.name)},
-                onBackButtonClicked = {navController.popBackStack()}
+                    navController.navigate(Halaman.Peminatan.name)
+                },
+                onBackButtonClicked = { navController.popBackStack() }
             )
         }
 
 
         composable(route = Halaman.Peminatan.name) {
-            RencanaStudyView (
+            RencanaStudyView(
                 mahasiswa = mahasiswaUiState,
                 onSubmitButton = {
                     RencanaStudyViewModel.saveDataKRS(it)
@@ -73,6 +74,19 @@ fun MahasiswaApp(
                     navController.popBackStack()
                 }
             )
-        }
+            composable(route = Halaman.TampilKrs.name) {
+                TampilView(
+                    mahasiswa = mahasiswaUiState,
+                    krs = rencanaStudiUiState,
+                    onbackbuttonClicked = {
+                        navController.popBackStack()
+                    },
+                    onResetButtonClicked = {
+                        navController.navigate(Halaman.Splash.name)
+                    }
+                )
+            }
         }
     }
+    }
+
